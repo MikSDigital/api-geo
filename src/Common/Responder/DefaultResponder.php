@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Province\Responder;
+namespace App\Common\Responder;
 
 use FOS\RestBundle\View\View;
 
-final class GetAllResponder
+final class DefaultResponder
 {
     public function __invoke(array $data = []): View
     {

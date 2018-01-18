@@ -56,8 +56,6 @@ final class ImportDataService
             ]);
         foreach ($records as $record) {
             if (empty($record['terc_county']) && empty($record['terc_commune'])) {
-                $this->output->writeln(StringHelper::mb_ucfirst((mb_strtolower($record['name']))));
-
                 $province = new Province();
                 $province->setTerc($record['terc_province'] . '00000');
                 $province->setName(StringHelper::mb_ucfirst((mb_strtolower($record['name']))));
@@ -67,6 +65,8 @@ final class ImportDataService
 
                 $this->entityManager->persist($province);
                 $this->entityManager->flush();
+            } elseif (empty($record['terc_commune'])) {
+
             }
         }
     }

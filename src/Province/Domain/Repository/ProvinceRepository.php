@@ -40,9 +40,4 @@ final class ProvinceRepository extends AbstractRepository implements ProvinceInt
 
         return new ResultWithPagination($result, $this->getAllRowsCount($criteria, self::ALIAS));
     }
-
-    public function addP()
-    {
-        
-    }
 }
