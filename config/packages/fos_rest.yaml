@@ -1,0 +1,20 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    body_listener:
+        enabled: true
+        throw_exception_on_unsupported_content_type: true
+        decoders:
+            json: fos_rest.decoder.json
+    format_listener:
+        rules:
+            - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
+    param_fetcher_listener: force
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+    allowed_methods_listener: true
+services:
+    fos_rest.decoder.json:
+        class: FOS\RestBundle\Decoder\JsonDecoder
+        public: true

@@ -1,0 +1,4 @@
+api_v1_province_get_all:
+    path: /api/v1/provinces
+    defaults: { _controller: 'App\Province\Action\GetAllAction' }
+    methods: [GET, POST]

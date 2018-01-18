@@ -1,0 +1,11 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    serializer: true
+    #default_locale: en
+    #csrf_protection: ~
+    #http_method_override: true
+
+    #esi: ~
+    #fragments: ~
+    php_errors:
+        log: true
