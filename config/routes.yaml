@@ -1,9 +1,14 @@
+_health:
+    path: /_health
+    defaults: { _controller: 'App\Common\Action\HealthAction' }
+    methods: GET
+
 api_v1_province_get_all:
     path: /api/v1/provinces
     defaults: { _controller: 'App\Province\Action\GetAllAction' }
-    methods: [GET]
+    methods: GET
 
 api_v1_county_get_all:
     path: /api/v1/counties
     defaults: { _controller: 'App\County\Action\GetAllAction' }
-    methods: [GET]
+    methods: GET
