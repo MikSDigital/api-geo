@@ -57,7 +57,16 @@ final class ImportDataService
         foreach ($records as $record) {
             if (empty($record['terc_county']) && empty($record['terc_commune'])) {
                 $this->output->writeln(StringHelper::mb_ucfirst((mb_strtolower($record['name']))));
-                $this->entityManager->getRepository(Province::class);
+
+                $province = new Province();
+                $province->setTerc($record['terc_province'] . '00000');
+                $province->setName(StringHelper::mb_ucfirst((mb_strtolower($record['name']))));
+                $province->setType((int) $record['type']);
+                $province->setUnit($record['unit']);
+                $province->setStateByDay(date_create_from_format('Y-m-d', $record['state_by_day']));
+
+                $this->entityManager->persist($province);
+                $this->entityManager->flush();
             }
         }
     }

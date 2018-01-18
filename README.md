@@ -26,7 +26,7 @@ bin/console doctrine:schema:update --force
 
 By wlać podstawowe dane administracyjne do bazy danych uruchom:
 ```bash
-bin/console app:importer
+bin/console app:import
 ```
 
 # Endpointy
