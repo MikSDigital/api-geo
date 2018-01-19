@@ -34,7 +34,7 @@ bin/console app:import
 | Status | Endpoint | Metoda | Opis | Parametry |
 |--|--|--|--|--|
 | :white_check_mark: | `/api/v1/provinces` | GET | Listing wszystkich województw | TODO |
-| :white_check_mark: | `/api/v1/provinces/{id}` | GET | Detal województwa o wskazanym `id` | TODO |
+| :x: | `/api/v1/provinces/{id}` | GET | Detal województwa o wskazanym `id` | TODO |
 | :white_check_mark: | `/api/v1/counties` | GET | Listing wszystkich powiatów | TODO |
 | :x: | `/api/v1/counties/{id}` | GET | Detal powiatu o wskazanym `id` | TODO|
 | :x: | `/api/v1/communes` | GET | Listing wszystkich gmin | TODO |
