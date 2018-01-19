@@ -40,7 +40,7 @@ bin/console app:import
 | :x: | `/api/v1/communes` | GET | Listing wszystkich gmin | TODO |
 | :x: | `/api/v1/communes/{id}` | GET | Detal gminy o danym `id` | TODO
 | :white_check_mark: | TODO... | TODO... | TODO | TODO
-| :x: | `/_health` | GET | Informacje o stanie usługi | TODO
+| :white_check_mark: | `/_health` | GET | Informacje o stanie usługi | TODO
 
 # Współtwórcy
 - Filip Nowacki - [@fnowacki](https://github.com/fnowacki)
