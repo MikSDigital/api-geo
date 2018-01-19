@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\County\Domain\Entity;
 
+use App\Province\Domain\Entity\Province;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

@@ -23,3 +23,9 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App\Province\Domain\Entity\Province
+
+    App\County\Domain\Repository\CountyRepository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - App\County\Domain\Entity\County

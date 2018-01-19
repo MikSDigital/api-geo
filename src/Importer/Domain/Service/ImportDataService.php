@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Importer\Domain\Service;
 
 use App\Common\Domain\Model\StringHelper;
+use App\County\Domain\Entity\County;
 use App\Importer\Domain\Dictionary\ImporterDictionary;
 use App\Province\Domain\Entity\Province;
 use Doctrine\ORM\EntityManager;
@@ -65,7 +66,32 @@ final class ImportDataService
 
                 $this->entityManager->persist($province);
                 $this->entityManager->flush();
-            } elseif (empty($record['terc_commune'])) {
+            }
+        }
+
+        foreach ($records as $record) {
+            if (empty($record['terc_commune']) && !empty($record['terc_county'])) {
+                $province = $this->entityManager
+                    ->getRepository(Province::class)
+                    ->findOneBy([
+                        'terc' => $record['terc_province'] . '00000'
+                    ]);
+
+                $county = new County();
+                $county->setTerc($record['terc_province'] . $record['terc_county'] . '000');
+                $county->setProvince($province);
+                $county->setName($record['name']);
+                $county->setType((int) $record['type']);
+                $county->setUnit($record['unit']);
+                $county->setStateByDay(date_create_from_format('Y-m-d', $record['state_by_day']));
+
+                $this->entityManager->persist($county);
+                $this->entityManager->flush();
+            }
+        }
+
+        foreach ($records as $record) {
+            if (!empty($record['terc_commune'])) {
 
             }
         }

@@ -4,8 +4,10 @@ declare(strict_types = 1);
 namespace App\County\Action;
 
 use App\Common\Action\AbstractAction;
+use App\Common\Domain\Model\PaginationHelper;
 use App\Common\Domain\Model\ParametersHandler;
 use App\Common\Responder\DefaultResponder;
+use App\County\Domain\Model\CountyFactory;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
@@ -36,10 +38,27 @@ final class GetAllAction extends AbstractAction
     public function __invoke(
         ParamFetcherInterface $paramFetcher,
         ParametersHandler $parametersHandler,
+        CountyFactory $countyFactory,
         DefaultResponder $responder
     ): View {
         $params = $parametersHandler->handleRequestParams($paramFetcher);
 
-        return $responder();
+        try {
+            $result = $countyFactory
+                ->create()
+                ->getAll($params);
+
+            $paginationHelper = new PaginationHelper($result->getRowsCount(), $params['_limit'], $params['_page']);
+
+            $responseData = [
+                'data' => $result->getResult(),
+                'pagination' => $paginationHelper->getPaginationData()
+            ];
+        } catch (\Exception $exception) {
+            $responseData = [
+                'error' => $exception->getMessage()
+            ];
+        }
+        return $responder($responseData);
     }
 }
